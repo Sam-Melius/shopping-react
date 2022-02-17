@@ -31,7 +31,7 @@ export default function ListPage() {
       {/* pass fetchItems to the ListItemForm component */}
       <div className='item-list'>
         {listItems.map(listItem => 
-          <ListItem key={listItem.id} fetchItems={fetchItems} listItem={ListItem} />)}
+          <ListItem key={listItem.id} fetchItems={fetchItems} listItem={listItem} />)}
         {/* map through all the list items and render them here */}
       </div>
 
