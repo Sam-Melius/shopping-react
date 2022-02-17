@@ -13,13 +13,13 @@ import ListPage from './ListPage';
 import './App.css';
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState('');
   // track the user in state
 
   useEffect(() => {
     async function fetch() {
       const user = await getUser();
-      if (user) setCurrentUser(user);
+      if (user) setUser(user);
     }
     fetch();
   });
@@ -27,7 +27,7 @@ export default function App() {
 
   async function handleLogout() {
     await logout();
-    setCurrentUser(null);
+    setUser('');
     // call the logout function
     // clear the user in state
   }
@@ -36,22 +36,22 @@ export default function App() {
     <Router>
       <div className='App'>
         <header>
-          { currentUser && <a onClick={handleLogout}>Logout</a>}
+          { user && <a onClick={handleLogout}>Logout</a>}
           {/* if there's a user, render a logout button here */}
         </header>
         <main>
           <Switch>
             <Route exact path="/">
               {
-                currentUser
+                user
                   ? <Redirect to='/shopping-list' />
-                  : <AuthPage setCurrentUser={setCurrentUser} />
+                  : <AuthPage setCurrentUser={setUser} />
               }
               {/* if there is a user, redirect to the list. Otherwise, render the auth page. Note that the AuthPage will need a function called setUser that can set the user state in App.js */}
             </Route>
             <Route exact path="/shopping-list">
               {
-                currentUser
+                user
                   ? <ListPage />
                   : <Redirect to='/' />
               }
