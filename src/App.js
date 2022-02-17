@@ -45,7 +45,7 @@ export default function App() {
               {
                 user
                   ? <Redirect to='/shopping-list' />
-                  : <AuthPage setCurrentUser={setUser} />
+                  : <AuthPage setUser={setUser} />
               }
               {/* if there is a user, redirect to the list. Otherwise, render the auth page. Note that the AuthPage will need a function called setUser that can set the user state in App.js */}
             </Route>
